@@ -1,65 +1,33 @@
-# clinicaPets
+# clinicaPets - Estudo de Caso 6: Clínica Veterinária
 
-A clean and modern Kotlin starter project configured with Gradle (Kotlin DSL).
+## 📋 Contextualização
 
-## 🚀 Features
+Vocês foram contratados para desenvolver o sistema de controle de atendimento de uma clínica veterinária. O sistema deve gerenciar serviços prestados, calcular taxas com base no comportamento do pet e tratar informações opcionais sobre alergias.
 
-- **Language:** Kotlin 2.1.0 with JVM Toolchain (Java 23)
-- **Build Tool:** Gradle with Kotlin DSL (`build.gradle.kts`)
-- **Testing:** `kotlin.test` with JUnit Platform
-- **Gradle Wrapper:** Bundled (`gradlew` / `gradlew.bat`), no prior Gradle installation required
+---
 
-## 📂 Project Structure
+## 📌 Requisitos Obrigatórios
 
-```
-clinicaPets/
-├── build.gradle.kts              # Gradle build script (Kotlin DSL)
-├── settings.gradle.kts           # Gradle settings
-├── gradlew / gradlew.bat         # Gradle wrapper executable scripts
-├── gradle/wrapper/               # Gradle wrapper jar and properties
-├── src/
-│   ├── main/
-│   │   ├── kotlin/com/clinicapets/
-│   │   │   ├── Main.kt           # Main entry point with demo
-│   │   │   ├── model/
-│   │   │   │   └── Models.kt     # Domain models (Pet, Owner, Veterinarian, etc.)
-│   │   │   └── service/
-│   │   │       └── ClinicService.kt # Business logic
-│   │   └── resources/
-│   └── test/
-│       ├── kotlin/com/clinicapets/
-│       │   └── ClinicServiceTest.kt # Unit tests
-│       └── resources/
-└── README.md
-```
+- **POO:** Classes e objetos (`Pet`, `Servico`, `Atendimento`).
+- **Variáveis e Tipos:** `String`, `Double`, `Boolean`.
+- **Condicionais:** `if/else` e `when`.
+- **Laços:** `for` para iterar sobre os serviços realizados.
+- **Null Safety:** Alergias e observações opcionais.
 
-## 🛠️ How to Run
+---
 
-### Run the application
-```bash
-# On Windows PowerShell / Command Prompt:
-.\gradlew.bat run
+## ⚙️ Regras de Negócio
 
-# On Linux / macOS:
-./gradlew run
-```
+1. **Modelagem:** `Pet` (nome, especie, peso), `Servico` (descricao, preco), `Atendimento`.
+2. **Carrinho de Serviços:** Iterar sobre a lista de serviços executados para calcular o subtotal.
+3. **Taxa de Agressividade (`if/else`):** Se o pet possuir o indicador de comportamento agressivo (`true`), adicionar uma taxa adicional de manuseio de R$ 25,00.
+4. **Alergias (Null Safety):** O campo `alergias` é opcional (Nullable). Utilizar chamada segura e operador Elvis para registrar "Nenhuma alergia conhecida" caso o campo seja nulo.
+5. **Status do Atendimento (`when`):** Avaliar o código de status:
+   - `1` -> "Triagem"
+   - `2` -> "Em Atendimento"
+   - `3` -> "Pronto para Alta"  
+   e emitir a mensagem correspondente.
 
-### Run tests
-```bash
-# On Windows:
-.\gradlew.bat test
+---
 
-# On Linux / macOS:
-./gradlew test
-```
-
-### Build project
-```bash
-.\gradlew.bat build
-```
-
-## 💻 Opening in IntelliJ IDEA
-
-1. Open **IntelliJ IDEA**.
-2. Select **File -> Open...** and select this directory (`clinicaPets`).
-3. IntelliJ IDEA will automatically recognize the Gradle project and configure the dependencies and JDK.
+Aluno: Paulo Barbosa de Almeida Junior

@@ -1,11 +1,5 @@
 package com.clinicapets.model
 
-enum class AtendimentoStatus {
-    TRIAGEM,
-    EM_ANDAMENTO,
-    PRONTO_PARA_ALTA
-}
-
 data class Pet(
     val nome: String,
     val especie: String,
@@ -22,9 +16,18 @@ data class Servico(
 data class Atendimento(
     val pet: Pet,
     val servicos: List<Servico>,
-    val status: AtendimentoStatus = AtendimentoStatus.TRIAGEM,
-    val taxaAdicional: Double = 25.00
+    val status: Int = 1,
+    val taxaAdicional: Double = if (pet.agressivo) 25.00 else 0.00
 ) {
     fun subtotal(): Double = servicos.sumOf { it.preco }
     fun valorTotal(): Double = subtotal() + taxaAdicional
+
+    fun descricaoStatus(): String {
+            return when (status) {
+                1 -> "Triagem"
+                2 -> "Em Atendimento"
+                3 -> "Pronto para Alta"
+                else -> "Status Inválido"
+            }
+        }
 }

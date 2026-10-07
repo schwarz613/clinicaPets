@@ -1,7 +1,6 @@
 package com.clinicapets.service
 
 import com.clinicapets.model.Atendimento
-import com.clinicapets.model.AtendimentoStatus
 import com.clinicapets.model.Pet
 import com.clinicapets.model.Servico
 
@@ -63,7 +62,7 @@ class ClinicService {
     fun registrarAtendimento(
         pet: Pet,
         servicos: List<Servico>,
-        status: AtendimentoStatus = AtendimentoStatus.TRIAGEM
+        status: Int = 1
     ): Atendimento {
         val atendimento = Atendimento(
             pet = pet,

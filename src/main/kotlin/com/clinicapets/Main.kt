@@ -79,7 +79,7 @@ fun main() {
                     println("Pet: ${atendimento.pet.nome} (${atendimento.pet.especie})")
                     println("Peso: ${atendimento.pet.peso} kg | Agressivo: ${if (atendimento.pet.agressivo) "Sim" else "Não"}")
                     println("Alergia: ${atendimento.pet.alergia}")
-                    println("Status: ${atendimento.status}")
+                    println("Status: ${atendimento.descricaoStatus()}")
                     println("-----------------------------------------")
                     println("Serviços Contratados:")
                     for (s in atendimento.servicos) {
