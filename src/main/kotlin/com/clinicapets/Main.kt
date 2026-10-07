@@ -15,7 +15,7 @@ fun main() {
     println("\n--- Cadastro Inicial do Pet ---")
     val pet = clinic.registrarPet()
 
-    var opcao: Int
+    var opcao: Int?
 
     do {
         println("\nEscolha uma opção:")
@@ -24,7 +24,8 @@ fun main() {
         println("3. Sair")
         print("Opção: ")
 
-        opcao = readLine()?.toIntOrNull() ?: 0
+        val inputOpcao = readLine()
+        opcao = inputOpcao?.toIntOrNull()
 
         when (opcao) {
             1 -> {
@@ -48,7 +49,8 @@ fun main() {
                     println("0. Finalizar seleção e registrar atendimento")
                     print("Escolha: ")
 
-                    escolhaServico = readLine()?.toIntOrNull()
+                    val inputServico = readLine()
+                    escolhaServico = inputServico?.toIntOrNull()
 
                     when {
                         escolhaServico == 0 -> {
@@ -60,19 +62,20 @@ fun main() {
                             println("-> Serviço adicionado: ${servicoEscolhido.descricao} (R$ ${String.format(Locale.US, "%.2f", servicoEscolhido.preco)})")
                             println("Total de serviços selecionados até agora: ${servicosSelecionados.size}")
                         }
+                        escolhaServico == null -> {
+                            println("Entrada finalizada.")
+                        }
                         else -> {
                             println("-> Opção inválida. Digite o número correspondente ao serviço ou 0 para finalizar.")
                         }
                     }
-                } while (escolhaServico != 0)
+                } while (escolhaServico != null && escolhaServico != 0)
 
                 if (servicosSelecionados.isEmpty()) {
                     println("\nNenhum serviço foi selecionado. Atendimento não registrado.")
                 } else {
-                    // Registra o atendimento no ClinicService
                     val atendimento = clinic.registrarAtendimento(pet, servicosSelecionados)
 
-                    // Mostra o resumo completo do pagamento
                     println("\n=========================================")
                     println("        RESUMO DO ATENDIMENTO")
                     println("=========================================")
@@ -98,12 +101,16 @@ fun main() {
                 println("Saindo do sistema...")
             }
 
+            null -> {
+                println("Entrada finalizada.")
+            }
+
             else -> {
                 println("Opção inválida. Tente novamente.")
             }
         }
 
-    } while (opcao != 3)
+    } while (opcao != null && opcao != 3)
 
     println("\n=========================================")
     println("ClinicaPets finalizado com sucesso!")
